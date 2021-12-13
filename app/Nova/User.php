@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\Activestatus;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
@@ -82,7 +83,9 @@ class User extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Activestatus()
+        ];
     }
 
     /**

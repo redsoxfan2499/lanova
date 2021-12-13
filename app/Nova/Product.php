@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\Activestatus;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Boolean;
@@ -52,7 +53,7 @@ class Product extends Resource
                         'placeholder' => 'Please input your name'
                     ]
                 ])
-            ->rules('required', 'max:10'),
+            ->rules('required', 'max:25'),
             Textarea::make('Description', 'description')
                 ->showOnIndex(),
             Date::make('Published Date', 'date_published')
@@ -84,7 +85,9 @@ class Product extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Activestatus()
+        ];
     }
 
     /**
